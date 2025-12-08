@@ -1,0 +1,14 @@
+{
+  "name": "bizrunner-static",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "serve",
+    "deploy": "gh-pages -d ."
+  },
+  "dependencies": {
+    "serve": "^14.2.0"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.0.0"
+  }
+}

@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- PRIMARY SEO -->
+    <title>BizRunner | Premier B2B Courier Services Western Cape</title>
+    <meta name="description" content="Reliable B2B courier and logistics services in Cape Town and the Western Cape. Specialized in same-day delivery, scheduled routes, and warehousing for businesses." />
+    <meta name="keywords" content="Courier Cape Town, B2B Logistics Western Cape, Same Day Delivery Cape Town, Business Courier, Warehousing Cape Town, Distribution Services" />
+    <meta name="author" content="BizRunner Logistics" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://bizrunner.org.za" />
+
+    <!-- OPEN GRAPH / SOCIAL (Facebook, LinkedIn, WhatsApp) -->
+    <meta property="og:type" content="business.business" />
+    <meta property="og:title" content="BizRunner | B2B Courier & Logistics Experts" />
+    <meta property="og:description" content="Seamless logistics for Western Cape businesses. Same-day distribution, scheduled routes, and dedicated fleets." />
+    <meta property="og:url" content="https://bizrunner.org.za" />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=1200&auto=format&fit=crop" />
+    <meta property="og:site_name" content="BizRunner" />
+    <meta property="og:locale" content="en_ZA" />
+
+    <!-- TWITTER CARDS -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="BizRunner | B2B Courier Services" />
+    <meta name="twitter:description" content="Reliable B2B courier solutions in Cape Town. Get a quote today." />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=1200&auto=format&fit=crop" />
+    
+    <!-- STRUCTURED DATA (JSON-LD) - CRITICAL FOR GOOGLE MAPS & LOCAL SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CourierService",
+      "name": "BizRunner",
+      "image": "https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=2075",
+      "url": "https://bizrunner.org.za",
+      "telephone": "021 555 0123",
+      "email": "info@bizrunner.org.za",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Unit 5, Logistics Park",
+        "addressLocality": "Montague Gardens",
+        "addressRegion": "Western Cape",
+        "postalCode": "7441",
+        "addressCountry": "ZA"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-33.8679",
+        "longitude": "18.5233"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "08:00",
+        "closes": "17:00"
+      },
+      "areaServed": {
+        "@type": "AdministrativeArea",
+        "name": "Western Cape"
+      },
+      "priceRange": "$$"
+    }
+    </script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <style>
+        /* --- CSS VARIABLES (Theming) --- */
+        :root {
+            --brand-primary: #0ea5e9;    /* Sky 500 */
+            --brand-dark: #0284c7;       /* Sky 600 */
+            --brand-darker: #0c4a6e;     /* Sky 900 */
+            --slate-50: #f8fafc;
+            --slate-100: #f1f5f9;
+            --slate-600: #475569;
+            --slate-800: #1e293b;
+            --slate-900: #0f172a;
+            --white: #ffffff;
+            --bg-body: #f8fafc;
+            --font-main: 'Inter', sans-serif;
+        }
+
+        /* --- RESET & BASE --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: var(--font-main);
+            color: var(--slate-800);
+            background-color: var(--bg-body);
+            line-height: 1.5;
+            position: relative;
+        }
+
+        /* Transparent Delivery Map Background */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2074&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            opacity: 0.05;
+            z-index: -1;
+            pointer-events: none;
+            filter: grayscale(100%);
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 700;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--brand-dark);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary:hover {
+            background-color: var(--brand-primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+        }
+        .btn-outline:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .section-py { padding: 6rem 0; }
+        
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.3s, padding 0.3s, box-shadow 0.3s;
+            padding: 1.5rem 0;
+        }
+        
+        nav.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 0.75rem 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--slate-900);
+            text-decoration: none;
+        }
+        .logo span { color: var(--brand-dark); }
+        .logo-icon {
+            background-color: var(--brand-dark);
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            display: flex;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        nav.scrolled .nav-link { color: var(--slate-600); }
+        .nav-link:hover { color: var(--brand-primary) !important; }
+
+        /* Mobile Menu */
+        .mobile-toggle { display: none; background: none; border: none; cursor: pointer; color: white; }
+        nav.scrolled .mobile-toggle { color: var(--slate-800); }
+        
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { color: var(--slate-800); font-weight: 600; padding: 0.5rem; text-decoration: none; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding-top: 5rem;
+            overflow: hidden;
+            color: white;
+            background-color: var(--slate-900); /* Fallback */
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.4));
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--slate-100);
+            max-width: 650px;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            position: relative;
+            z-index: 2;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(14, 165, 233, 0.2);
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            border-radius: 99px;
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+            backdrop-filter: blur(4px);
+            position: relative;
+            z-index: 2;
+        }
+        .dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; }
+
+        .features {
+            margin-top: 3rem;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            color: #cbd5e1;
+            position: relative;
+            z-index: 2;
+        }
+        .feature-item { display: flex; align-items: center; gap: 0.5rem; }
+        .feature-item svg { color: var(--brand-primary); }
+
+        /* --- SERVICES --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--slate-50);
+            border: 1px solid var(--slate-100);
+            padding: 2rem;
+            border-radius: 0.75rem;
+            transition: all 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border-color: var(--brand-primary);
+        }
+        .service-icon {
+            background: white;
+            padding: 1rem;
+            border-radius: 50%;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: var(--brand-dark);
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+        .service-card h3 { margin-bottom: 0.75rem; font-size: 1.25rem; }
+        .service-card p { font-size: 0.875rem; color: var(--slate-600); }
+
+        /* --- ABOUT --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .about-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--slate-100);
+        }
+        .stat-number { font-size: 2rem; font-weight: 800; color: var(--brand-dark); }
+        .stat-label { font-size: 0.875rem; color: var(--slate-600); }
+        
+        .about-img {
+            position: relative;
+        }
+        .about-img img {
+            width: 100%;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- CONTACT --- */
+        .contact-wrapper {
+            background: var(--slate-50);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+        }
+        
+        .contact-info {
+            background: var(--slate-900);
+            color: white;
+            padding: 3rem;
+        }
+        .contact-item { display: flex; gap: 1rem; margin-bottom: 2rem; }
+        .contact-item svg { color: var(--brand-primary); }
+        .contact-label { font-weight: 700; font-size: 1.1rem; display: block; margin-bottom: 0.25rem; }
+        .contact-value { color: #cbd5e1; font-size: 0.95rem; }
+
+        .contact-form-container {
+            padding: 3rem;
+            position: relative;
+            background: white;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--slate-800);
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.375rem;
+            font-family: inherit;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--brand-primary);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+
+        .success-message, .error-message {
+            display: none;
+            padding: 1rem;
+            border-radius: 0.375rem;
+            margin-bottom: 1rem;
+        }
+        .success-message { background: #dcfce7; color: #166534; }
+        .error-message { background: #fee2e2; color: #991b1b; }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--slate-900);
+            color: var(--slate-600);
+            padding: 3rem 0;
+            font-size: 0.875rem;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-links a { color: inherit; text-decoration: none; margin-left: 1.5rem; transition: color 0.2s; }
+        .footer-links a:hover { color: white; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            .hero h1 { font-size: 2.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .contact-wrapper { grid-template-columns: 1fr; }
+            .form-grid { grid-template-columns: 1fr; }
+            .footer-content { flex-direction: column; gap: 1rem; text-align: center; }
+            .footer-links a { margin: 0 0.75rem; }
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.31.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
+    "@emailjs/browser": "https://aistudiocdn.com/@emailjs/browser@^4.4.1",
+    "vite": "https://aistudiocdn.com/vite@^7.2.7"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <!-- SVG: Truck -->
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"/>
+                        <path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"/>
+                        <circle cx="7" cy="18" r="2"/>
+                        <circle cx="17" cy="18" r="2"/>
+                    </svg>
+                </div>
+                BIZ<span>RUNNER</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#about" class="nav-link">About Us</a>
+                <a href="#contact" class="btn btn-primary">GET QUOTE</a>
+            </div>
+
+            <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="mobile-menu">
+            <a href="#services" onclick="toggleMenu()">Services</a>
+            <a href="#about" onclick="toggleMenu()">About Us</a>
+            <a href="#contact" onclick="toggleMenu()">Get Quote</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?q=80&w=2075&auto=format&fit=crop" alt="Western Cape Logistics Truck">
+        </div>
+        <div class="hero-overlay"></div>
+        
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="badge">
+                <div class="dot"></div> Operating across the Western Cape
+            </div>
+            
+            <h1>Seamless B2B Logistics <br><span style="color: var(--brand-primary)">for Your Business.</span></h1>
+            
+            <p>BizRunner is the trusted courier partner for businesses in Cape Town and surrounds. We handle your deliveries with professional care.</p>
+            
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="#contact" class="btn btn-primary">
+                    Get a Quote 
+                    <!-- Arrow Right -->
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </a>
+                <a href="#services" class="btn btn-outline">View Services</a>
+            </div>
+
+            <div class="features">
+                <div class="feature-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Same-Day Cape Town
+                </div>
+                <div class="feature-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Real-Time Tracking
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section-py" style="background: white;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <span style="color: var(--brand-dark); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.875rem;">Our Services</span>
+                <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--slate-900); margin-top: 0.5rem;">Tailored Logistics Solutions</h2>
+            </div>
+
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 17h4V5H2v12h3"/><path d="M20 17h2v-3.34a4 4 0 0 0-1.17-2.83L19 9h-5"/><path d="M14 17h1"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+                    </div>
+                    <h3>Same-Day Distribution</h3>
+                    <p>Fast and reliable delivery within Cape Town and surrounding suburbs. Perfect for urgent documents.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </div>
+                    <h3>Scheduled Routes</h3>
+                    <p>Regular pickup and delivery loops for your business. We connect your branches daily.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                    </div>
+                    <h3>Warehousing</h3>
+                    <p>Secure short-term storage solutions. We pick, pack, and ship directly to your customers.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>Dedicated Fleet</h3>
+                    <p>Need a vehicle dedicated solely to your business? We provide the driver and the van.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section-py">
+        <div class="container about-grid">
+            <div>
+                <span style="background: var(--slate-100); color: var(--brand-dark); padding: 4px 12px; border-radius: 4px; font-weight: 700; font-size: 0.85rem;">LOCAL EXPERTS</span>
+                <h2 style="font-size: 2.5rem; font-weight: 800; margin: 1rem 0 1.5rem 0;">Your Partner in <br>Western Cape Logistics.</h2>
+                <div style="color: var(--slate-600); font-size: 1.1rem; line-height: 1.7; display: flex; flex-direction: column; gap: 1rem;">
+                    <p>Based in the heart of the Western Cape, BizRunner understands the unique rhythm of local business. Whether it's navigating Cape Town traffic or reaching outlying areas like Paarl and Stellenbosch, we know the way.</p>
+                    <p>Simple, honest, and effective courier services for businesses that demand reliability.</p>
+                </div>
+                <div class="about-stats">
+                    <div>
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Local Coverage</div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070&auto=format&fit=crop" alt="Cape Town Logistics">
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section-py">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h2 style="font-size: 2.5rem; font-weight: 800; color: var(--slate-900);">Contact Us</h2>
+                <p style="color: var(--slate-600);">Get a quote or open a vendor account today.</p>
+            </div>
+
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem;">Get in Touch</h3>
+                    
+                    <div class="contact-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <div>
+                            <span class="contact-label">Cape Town Office</span>
+                            <span class="contact-value">Unit 5, Logistics Park<br>Montague Gardens, 7441</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <div>
+                            <span class="contact-label">Call Us</span>
+                            <span class="contact-value">021 555 0123</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        <div>
+                            <span class="contact-label">Email Us</span>
+                            <span class="contact-value">info@bizrunner.org.za</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-container">
+                    <div id="success-msg" class="success-message">
+                        <strong>Message Sent!</strong> We will contact you shortly.
+                    </div>
+                    <div id="error-msg" class="error-message"></div>
+
+                    <form id="contact-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="user_name">Company / Contact Person</label>
+                                <input type="text" name="name" id="user_name" class="form-control" placeholder="Enter name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="user_email">Email Address</label>
+                                <input type="email" name="email" id="user_email" class="form-control" placeholder="name@company.co.za" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="user_phone">Phone Number</label>
+                            <input type="tel" name="phone" id="user_phone" class="form-control" placeholder="082 123 4567" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="user_message">How can we help?</label>
+                            <textarea name="details" id="user_message" rows="4" class="form-control" placeholder="Tell us about your delivery needs..." required></textarea>
+                        </div>
+
+                        <button type="submit" id="submit-btn" class="btn btn-primary" style="width: 100%;">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2024 BizRunner Logistics. Western Cape, South Africa.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LOGIC -->
+    <script>
+        // 1. Init EmailJS
+        const PUBLIC_KEY = 'eEzDqiApwCZeayQ39';
+        const SERVICE_ID = 'service_752tqzx';
+        const TEMPLATE_ID = 'template_101cvf8';
+
+        (function(){
+            // Pre-load but don't strictly require init for send()
+        })();
+
+        // 2. Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // 3. Mobile Menu
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('open');
+        }
+
+        // 4. Form Handling
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const btn = document.getElementById('submit-btn');
+            const successMsg = document.getElementById('success-msg');
+            const errorMsg = document.getElementById('error-msg');
+            
+            // UI State: Loading
+            const originalText = btn.innerText;
+            btn.innerText = 'Sending...';
+            btn.disabled = true;
+            errorMsg.style.display = 'none';
+            successMsg.style.display = 'none';
+
+            // Gather Data
+            const userName = document.getElementById('user_name').value;
+            const userEmail = document.getElementById('user_email').value;
+            const userPhone = document.getElementById('user_phone').value;
+            const userMessage = document.getElementById('user_message').value;
+
+            const params = {
+                name: userName,
+                email: userEmail,
+                phone: userPhone,
+                message: userMessage,
+                // Fallbacks to ensure template match
+                to_name: 'BizRunner Team',
+                from_name: userName,
+                details: userMessage
+            };
+
+            // Send
+            emailjs.send(SERVICE_ID.trim(), TEMPLATE_ID.trim(), params, PUBLIC_KEY.trim())
+                .then(function() {
+                    successMsg.style.display = 'block';
+                    document.getElementById('contact-form').reset();
+                    btn.innerText = 'Sent!';
+                    setTimeout(() => {
+                        btn.innerText = originalText;
+                        btn.disabled = false;
+                    }, 3000);
+                }, function(error) {
+                    console.error('FAILED...', error);
+                    let failReason = "Unknown error";
+                    if(typeof error === 'object') failReason = JSON.stringify(error);
+                    
+                    errorMsg.innerText = 'Failed to send. Please email us directly: info@bizrunner.org.za';
+                    errorMsg.style.display = 'block';
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                });
+        });
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
